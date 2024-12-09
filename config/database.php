@@ -107,6 +107,7 @@ return [
             'password' => env('DB_PASSWORD2', ''),
             'charset'  => 'latin1',
             'prefix'   => '',
+            
         ],
             'sqlsrv3' => [
             'driver'   => 'sqlsrv',
@@ -117,6 +118,7 @@ return [
             'password' => env('DB_PASSWORD3', ''),
             'charset'  => 'latin1',
             'prefix'   => '',
+            
         ],
 
 

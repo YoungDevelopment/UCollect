@@ -21,64 +21,112 @@ use App\Models\Tiger\UDW;
 
 class AccountSearchController extends Controller
 {
-public function getUDWFieldData($UDW_SEQ_NO, $UDW_DBR_NO)
-{
-    try {
-        // Step 1: Fetch the menu name from the UdwMenuConfig model using UDW_SEQ_NO
-        $menu = UdwMenuConfig::where('udw_seq_no', $UDW_SEQ_NO)->first();
-        
-        if (!$menu) {
-            return response()->json(['error' => 'Menu not found for the given UDW_SEQ_NO'], 404);
+    /**=====================================================================================
+     * Fetch UDW Field Data
+     * 
+     * This function will fetch the UDW field data for a specific menu and account
+     * 
+     * ## Process
+     * 1. Fetch Address Information
+     * 2. Fetch borrower Contact Information (Phone, Email)
+     * 3. Fetch co-borrower Contact Information (Phone, Email)
+     * 4. Fetch other Contact Information like Employeer Number, Employeer Name
+     * 5. Append Everything together
+     * 
+     * Test the API with:
+     * http://127.0.0.1:8000/api/getContactInformation/{ADR_DBR_NO}/
+     * 
+     * ## UI Component
+     * Dashboard/ContactCard
+     * 
+     * @param string $ADR_DBR_NO The account number
+     * @return \Illuminate\Http\JsonResponse Field data with population status
+     * =====================================================================================
+     */
+
+    public function getContactNotes($ADR_DBR_NO)
+    {
+        try{
+        return response()->json($ADR_DBR_NO);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Server Error', 'details' => $e->getMessage()], 500);
         }
-        
-        // Fetch the field configuration for the given UDW_SEQ_NO
-        $fieldsConfig = UdwFieldConfig::where('udw_seq_no', $UDW_SEQ_NO)->get(['field_name', 'udw_column_name']);
-        
-        // Step 2: Fetch the UDW data for the given UDW_DBR_NO and UDW_SEQ_NO
-        $udwData = UDW::where('UDW_DBR_NO', $UDW_DBR_NO)
-                      ->where('UDW_SEQ', $UDW_SEQ_NO)  // Corrected column name to UDW_SEQ
-                      ->first(); // Assuming first() to get the relevant data for the account and menu
-        
-        if (!$udwData) {
-            return response()->json([
-                'error' => 'Data not found for this account and menu combination'
-            ], 404);
-        }
-
-        // Step 3: Prepare the response for each field in the field configuration
-        $fieldData = [];
-
-        foreach ($fieldsConfig as $fieldConfig) {
-            // Dynamically access the field value using the `udw_column_name`
-            $fieldValue = $udwData->{$fieldConfig->udw_column_name}; // Access the field dynamically
-
-            // Determine if the field is populated
-            $isPopulated = !empty($fieldValue); // Field is populated if there's a value
-            
-            // Prepare the field response
-            $fieldData[] = [
-                'field_name'      => $fieldConfig->field_name,
-                'udw_column_name' => $fieldConfig->udw_column_name,
-                'value'           => $fieldValue,
-                'is_populated'    => $isPopulated
-            ];
-        }
-
-        // Step 4: Return the menu name along with the field data
-        return response()->json([
-            'menu_name' => $menu->menu_name,
-            'fields' => $fieldData
-        ]);
-
-    } catch (\Exception $e) {
-        return response()->json([
-            'error' => 'Server Error',
-            'details' => $e->getMessage()
-        ], 500);
     }
-}
 
-    /**
+
+    /**=====================================================================================
+     * Fetch UDW Field Data
+     * 
+     * This function will fetch the UDW field data for a specific menu and account
+     * 
+     * ## Process
+     * 1. Fetch menu name from UdwMenuConfig using UDW_SEQ_NO
+     * 2. Fetch field configuration for the UDW_SEQ_NO
+     * 3. Fetch UDW data for given UDW_DBR_NO and UDW_SEQ_NO
+     * 4. Prepare response with field data and population status
+     * 
+     * Test the API with:
+     * http://127.0.0.1:8000/api/getUDWFieldData/{UDW_SEQ_NO}/{UDW_DBR_NO}
+     * 
+     * ## UI Component
+     * Dashboard/AccountDetails
+     * 
+     * @param string $UDW_SEQ_NO The menu sequence number
+     * @param string $UDW_DBR_NO The account number
+     * @return \Illuminate\Http\JsonResponse Field data with population status
+     * =====================================================================================
+     */
+
+
+    public function getUDWFieldData($UDW_SEQ_NO, $UDW_DBR_NO)
+    {
+        try {
+            $menu = UdwMenuConfig::where('udw_seq_no', $UDW_SEQ_NO)->first();
+            
+            if (!$menu) {
+                return response()->json(['error' => 'Menu not found for the given UDW_SEQ_NO'], 404);
+            }
+            
+            $fieldsConfig = UdwFieldConfig::where('udw_seq_no', $UDW_SEQ_NO)->get(['field_name', 'udw_column_name']);
+            
+            $udwData = UDW::where('UDW_DBR_NO', $UDW_DBR_NO)
+                          ->where('UDW_SEQ', $UDW_SEQ_NO)
+                          ->first();
+            
+            if (!$udwData) {
+                return response()->json([
+                    'error' => 'Data not found for this account and menu combination'
+                ], 404);
+            }
+
+            $fieldData = [];
+
+            foreach ($fieldsConfig as $fieldConfig) {
+                $fieldValue = $udwData->{$fieldConfig->udw_column_name};
+                $isPopulated = !empty($fieldValue);
+                
+                $fieldData[] = [
+                    'field_name'      => $fieldConfig->field_name,
+                    'udw_column_name' => $fieldConfig->udw_column_name,
+                    'value'           => $fieldValue,
+                    'is_populated'    => $isPopulated
+                ];
+            }
+
+            return response()->json([
+                'menu_name' => $menu->menu_name,
+                'fields' => $fieldData
+            ]);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => 'Server Error',
+                'details' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    /**=====================================================================================
      * Fetch UDW Menu Items
      * 
      * This fundtion will fetch the UDW Menu Items label
@@ -96,6 +144,7 @@ public function getUDWFieldData($UDW_SEQ_NO, $UDW_DBR_NO)
      * 
      * @param string $dbrNo The `UDW_DBR_NO` used to fetch UDW_SEQ_NO.
      * @return \Illuminate\Http\JsonResponse The combined `DBR` and `ADR` data in JSON format.
+     * =====================================================================================
      */
     public function getUDWMenuItems($UDW_DBR_NO)
     {
@@ -137,7 +186,7 @@ public function getUDWFieldData($UDW_SEQ_NO, $UDW_DBR_NO)
 
 
 
-    /**
+    /**=====================================================================================
      * Fetch DBR_NO Count from DB
      * 
      * This function retrieves count of DBR_NO in the CDS.DBR Table to see 
@@ -154,6 +203,7 @@ public function getUDWFieldData($UDW_SEQ_NO, $UDW_DBR_NO)
      * 
      * @param string $dbrNo The `DBR NO` used to fetch account details.
      * @return \Illuminate\Http\JsonResponse The combined `DBR` and `ADR` data in JSON format.
+     * =====================================================================================
      */
 
      public function checkDBR_NO($dbrNo)
@@ -170,7 +220,7 @@ public function getUDWFieldData($UDW_SEQ_NO, $UDW_DBR_NO)
 
 
 
-    /**
+    /**=====================================================================================
      * Fetch Account Details
      * 
      * This function retrieves account information from the `CDS.DBR` and `CDS.ADR` tables
@@ -189,6 +239,7 @@ public function getUDWFieldData($UDW_SEQ_NO, $UDW_DBR_NO)
      * 
      * @param string $dbrNo The `DBR NO` used to fetch account details.
      * @return \Illuminate\Http\JsonResponse The combined `DBR` and `ADR` data in JSON format.
+     * =====================================================================================
      */
 
      public function getAccountDetails($dbrNo)
@@ -202,13 +253,13 @@ public function getUDWFieldData($UDW_SEQ_NO, $UDW_DBR_NO)
                     'DBR_Desk',
                     'DBR_Assign_Date_O',
                     'DBR_Close_Date_O',
-
+                    
                 ])
                 ->where('DBR_NO', $dbrNo)
                 ->first();
 
 
-             $adrRecords = ADR::select('ADR_SEQ_NO', 'ADR_Name', 'ADR_DBR_NO', 'ADR_TAX_ID')->where('ADR_DBR_NO', $dbrNo)->get();
+             $adrRecords = ADR::select('ADR_SEQ_NO', 'ADR_Name', 'ADR_DBR_NO', 'ADR_TAX_ID', 'ADR_DOB_O')->where('ADR_DBR_NO', $dbrNo)->get();
              
              $borrowerName = null;
              $coBorrowerName = null;
@@ -219,6 +270,7 @@ public function getUDWFieldData($UDW_SEQ_NO, $UDW_DBR_NO)
                     if ($adr->ADR_SEQ_NO == 1) {
                          $borrowerName = $adr->ADR_Name;
                          $SSN = $adr->ADR_TAX_ID;
+                         $DOB = $adr->ADR_DOB_O;
                     } elseif ($adr->ADR_SEQ_NO == 2) {
                          $coBorrowerName = $adr->ADR_Name;
                     } 
@@ -227,7 +279,7 @@ public function getUDWFieldData($UDW_SEQ_NO, $UDW_DBR_NO)
                 $record->Borrower_Name = $borrowerName;
                 $record->CoBorrower_Name = $coBorrowerName;
                 $record->SSN = $SSN;
-
+                $record->DOB = $DOB;
                return response()->json($record);
 
 

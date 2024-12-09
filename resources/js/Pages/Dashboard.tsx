@@ -106,7 +106,7 @@ export default function Dashboard() {
         setDBR_NO(DBR_NO);
     };
 
-    const ResetAccountDataInUI = () => {
+    const ResetAccountDataInUI = async () => {
         setMenuItemsUDW([]);
     };
 

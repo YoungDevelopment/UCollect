@@ -10,6 +10,7 @@ import {
     ScanText,
     Ratio,
     EyeClosed,
+    Mail,
 } from "lucide-react";
 import { toast } from "sonner";
 import { Badge } from "@/Components/ui/badge";
@@ -29,6 +30,7 @@ import { AuroraBackground } from "../ui/aurora-background";
 import { useEffect, useState } from "react";
 import { format, parse } from "date-fns";
 import { Skeleton } from "../ui/skeleton";
+import { Label } from "../ui/label";
 
 type AccountDetailsCardProps = {
     accountDetails?: {
@@ -156,134 +158,220 @@ export const AccountDetailsCard = ({
                     </CardHeader>
 
                     <CardContent className="grid gap-4">
-                        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                            <div className="space-y-2">
-                                <div className="text-sm font-medium text-muted-foreground">
-                                    Account Holder
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <User className="h-4 w-4" />
-                                    <div className="font-semibold">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                            <div className="flex items-start gap-2">
+                                <User className="h-5 w-5 mt-1 flex-shrink-0" />
+                                <div>
+                                    <Label
+                                        htmlFor="account-holder"
+                                        className="text-sm font-medium text-muted-foreground"
+                                    >
+                                        Account Holder
+                                    </Label>
+                                    <p
+                                        id="account-holder"
+                                        className="text-pretty break-words font-mono"
+                                        style={{
+                                            wordBreak: "break-word",
+                                            overflowWrap: "break-word",
+                                            whiteSpace: "normal",
+                                        }}
+                                    >
                                         {isLoading ? (
                                             <Skeleton className="w-24 h-4" />
                                         ) : (
                                             accountDetails?.Borrower_Name
                                         )}
-                                    </div>
+                                    </p>
                                 </div>
                             </div>
 
-                            <div className="space-y-2">
-                                <div className="text-sm font-medium text-muted-foreground">
-                                    SSN
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <IdCard className="h-4 w-4" />
-                                    <div className="font-mono">
+                            {/* SSN */}
+                            <div className="flex items-start gap-2">
+                                <IdCard className="h-5 w-5 mt-1 flex-shrink-0" />
+                                <div>
+                                    <Label
+                                        htmlFor="ssn"
+                                        className="text-sm font-medium text-muted-foreground"
+                                    >
+                                        SSN
+                                    </Label>
+                                    <p
+                                        id="ssn"
+                                        className="text-pretty break-words font-mono"
+                                        style={{
+                                            wordBreak: "break-word",
+                                            overflowWrap: "break-word",
+                                            whiteSpace: "normal",
+                                        }}
+                                    >
                                         {isLoading ? (
                                             <Skeleton className="w-24 h-4" />
                                         ) : (
                                             accountDetails?.SSN
                                         )}
-                                    </div>
+                                    </p>
                                 </div>
                             </div>
 
-                            <div className="space-y-2">
-                                <div className="text-sm font-medium text-muted-foreground">
-                                    Date of Birth
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <CalendarFold className="h-4 w-4" />
-                                    <div className="font-mono">
+                            {/* Date of Birth */}
+                            <div className="flex items-start gap-2">
+                                <CalendarFold className="h-4 w-4 mt-1 flex-shrink-0" />
+                                <div>
+                                    <Label
+                                        htmlFor="date-of-birth"
+                                        className="text-sm font-medium text-muted-foreground"
+                                    >
+                                        Date of Birth
+                                    </Label>
+                                    <p
+                                        id="date-of-birth"
+                                        className="text-pretty break-words font-mono"
+                                        style={{
+                                            wordBreak: "break-word",
+                                            overflowWrap: "break-word",
+                                            whiteSpace: "normal",
+                                        }}
+                                    >
                                         {isLoading ? (
                                             <Skeleton className="w-24 h-4" />
                                         ) : (
                                             formatted_DOB
                                         )}
-                                    </div>
+                                    </p>
                                 </div>
                             </div>
 
-                            <div className="space-y-2">
-                                <div className="text-sm font-medium text-muted-foreground">
-                                    Co-Borrower
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <Users className="h-4 w-4" />
-                                    <div className="font-mono">
+                            <div className="flex items-start gap-2">
+                                <Users className="h-4 w-4 mt-1 flex-shrink-0" />
+                                <div>
+                                    <Label
+                                        htmlFor="co-borrower"
+                                        className="text-sm font-medium text-muted-foreground"
+                                    >
+                                        Co-Borrower
+                                    </Label>
+                                    <p
+                                        id="co-borrower"
+                                        className="text-pretty break-words font-mono"
+                                        style={{
+                                            wordBreak: "break-word",
+                                            overflowWrap: "break-word",
+                                            whiteSpace: "normal",
+                                        }}
+                                    >
                                         {isLoading ? (
                                             <Skeleton className="w-24 h-4" />
                                         ) : (
                                             accountDetails?.CoBorrower_Name
                                         )}
-                                    </div>
+                                    </p>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                            <div className="space-y-2">
-                                <div className="text-sm font-medium text-muted-foreground">
-                                    Assigned Date
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <BookOpenCheck className="h-4 w-4" />
-                                    <div className="font-mono">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                            <div className="flex items-start gap-2">
+                                <BookOpenCheck className="h-4 w-4 mt-1 flex-shrink-0" />
+                                <div>
+                                    <Label
+                                        htmlFor="assigned-date"
+                                        className="text-sm font-medium text-muted-foreground"
+                                    >
+                                        Assigned Date
+                                    </Label>
+                                    <p
+                                        id="assigned-date"
+                                        className="text-pretty break-words font-mono"
+                                        style={{
+                                            wordBreak: "break-word",
+                                            overflowWrap: "break-word",
+                                            whiteSpace: "normal",
+                                        }}
+                                    >
                                         {isLoading ? (
                                             <Skeleton className="w-24 h-4" />
                                         ) : (
                                             formatted_DBR_Assign_Date_O
                                         )}
-                                    </div>
+                                    </p>
                                 </div>
                             </div>
 
-                            <div className="space-y-2">
-                                <div className="text-sm font-medium text-muted-foreground">
-                                    Status
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <ScanText className="h-4 w-4" />
-                                    <div className="font-mono">
+                            <div className="flex items-start gap-2">
+                                <ScanText className="h-4 w-4 mt-1 flex-shrink-0" />
+                                <div>
+                                    <Label
+                                        htmlFor="status"
+                                        className="text-sm font-medium text-muted-foreground"
+                                    >
+                                        Status
+                                    </Label>
+                                    <p
+                                        id="status"
+                                        className="text-pretty break-words font-mono"
+                                        style={{
+                                            wordBreak: "break-word",
+                                            overflowWrap: "break-word",
+                                            whiteSpace: "normal",
+                                        }}
+                                    >
                                         {isLoading ? (
                                             <Skeleton className="w-24 h-4" />
                                         ) : (
                                             accountDetails?.DBR_Status
                                         )}
-                                    </div>
+                                    </p>
                                 </div>
                             </div>
 
-                            <div className="space-y-2">
-                                <div className="text-sm font-medium text-muted-foreground">
-                                    Desk
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <Ratio className="h-4 w-4" />
-                                    <div className="font-mono">
+                            <div className="flex items-start gap-2">
+                                <Ratio className="h-4 w-4 mt-1 flex-shrink-0" />
+                                <div>
+                                    <Label
+                                        htmlFor="desk"
+                                        className="text-sm font-medium text-muted-foreground"
+                                    >
+                                        Desk
+                                    </Label>
+                                    <p
+                                        id="desk"
+                                        className="text-pretty break-words font-mono"
+                                        style={{
+                                            wordBreak: "break-word",
+                                            overflowWrap: "break-word",
+                                            whiteSpace: "normal",
+                                        }}
+                                    >
                                         {isLoading ? (
                                             <Skeleton className="w-24 h-4" />
                                         ) : (
                                             accountDetails?.DBR_Desk
                                         )}
-                                    </div>
+                                    </p>
                                 </div>
                             </div>
 
-                            <div className="space-y-2">
-                                <div className="text-sm font-medium text-muted-foreground">
-                                    Closed Date
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <EyeClosed className="h-4 w-4" />
-                                    <div className="font-mono">
-                                        {isLoading ? (
-                                            <Skeleton className="w-24 h-4" />
-                                        ) : (
-                                            accountDetails?.DBR_Close_Date_O
-                                        )}
-                                    </div>
+                            <div className="flex items-start gap-2">
+                                <Mail className="h-4 w-4 mt-1 flex-shrink-0" />
+                                <div>
+                                    <Label
+                                        htmlFor="DBR_Close_Date_O"
+                                        className="text-sm font-medium text-muted-foreground"
+                                    >
+                                        Email
+                                    </Label>
+                                    <p
+                                        id="DBR_Close_Date_O"
+                                        className="text-pretty break-words"
+                                        style={{
+                                            wordBreak: "break-word",
+                                            overflowWrap: "break-word",
+                                            whiteSpace: "normal",
+                                        }}
+                                    >
+                                        {accountDetails?.DBR_Close_Date_O}
+                                    </p>
                                 </div>
                             </div>
                         </div>
