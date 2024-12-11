@@ -120,7 +120,7 @@ const AccountSearchBar = ({ DBR_NO }: AccountSearchBarProps) => {
             <div className="flex items-center space-x-2">
                 <Button
                     variant="outline"
-                    className="text-lg h-12 rounded-xl"
+                    className="text-lg  rounded-xl"
                     onClick={handleButtonClick}
                 >
                     {buttonText}

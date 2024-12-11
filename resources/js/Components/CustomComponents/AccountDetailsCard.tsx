@@ -97,7 +97,7 @@ export const AccountDetailsCard = ({
                 >
                     <CardHeader className="pb-4">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <CardTitle className="text-2xl font-bold flex items-center gap-2">
+                            <CardTitle className="text-xl font-bold flex items-center gap-2">
                                 {isLoading ? (
                                     <Skeleton className="w-32 h-6" />
                                 ) : (
@@ -144,7 +144,7 @@ export const AccountDetailsCard = ({
                                 )}
                             </Badge>
                         </div>
-                        <CardDescription className="text-xl font-bold">
+                        <CardDescription className="text-lg font-bold">
                             {isLoading ? (
                                 <Skeleton className="w-32 h-6" />
                             ) : (
@@ -158,19 +158,19 @@ export const AccountDetailsCard = ({
                     </CardHeader>
 
                     <CardContent className="grid gap-4">
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                             <div className="flex items-start gap-2">
                                 <User className="h-5 w-5 mt-1 flex-shrink-0" />
                                 <div>
                                     <Label
                                         htmlFor="account-holder"
-                                        className="text-sm font-medium text-muted-foreground"
+                                        className="text-xs font-medium text-muted-foreground"
                                     >
                                         Account Holder
                                     </Label>
                                     <p
                                         id="account-holder"
-                                        className="text-pretty break-words font-mono"
+                                        className="text-pretty break-words font-mono text-sm"
                                         style={{
                                             wordBreak: "break-word",
                                             overflowWrap: "break-word",
@@ -192,13 +192,13 @@ export const AccountDetailsCard = ({
                                 <div>
                                     <Label
                                         htmlFor="ssn"
-                                        className="text-sm font-medium text-muted-foreground"
+                                        className="text-xs font-medium text-muted-foreground"
                                     >
                                         SSN
                                     </Label>
                                     <p
                                         id="ssn"
-                                        className="text-pretty break-words font-mono"
+                                        className="text-pretty break-words font-mono text-sm"
                                         style={{
                                             wordBreak: "break-word",
                                             overflowWrap: "break-word",
@@ -220,13 +220,13 @@ export const AccountDetailsCard = ({
                                 <div>
                                     <Label
                                         htmlFor="date-of-birth"
-                                        className="text-sm font-medium text-muted-foreground"
+                                        className="text-xs font-medium text-muted-foreground"
                                     >
                                         Date of Birth
                                     </Label>
                                     <p
                                         id="date-of-birth"
-                                        className="text-pretty break-words font-mono"
+                                        className="text-pretty break-words font-mono text-sm"
                                         style={{
                                             wordBreak: "break-word",
                                             overflowWrap: "break-word",
@@ -247,13 +247,13 @@ export const AccountDetailsCard = ({
                                 <div>
                                     <Label
                                         htmlFor="co-borrower"
-                                        className="text-sm font-medium text-muted-foreground"
+                                        className="text-xs font-medium text-muted-foreground"
                                     >
                                         Co-Borrower
                                     </Label>
                                     <p
                                         id="co-borrower"
-                                        className="text-pretty break-words font-mono"
+                                        className="text-pretty break-words font-mono text-sm"
                                         style={{
                                             wordBreak: "break-word",
                                             overflowWrap: "break-word",
@@ -276,13 +276,13 @@ export const AccountDetailsCard = ({
                                 <div>
                                     <Label
                                         htmlFor="assigned-date"
-                                        className="text-sm font-medium text-muted-foreground"
+                                        className="text-xs font-medium text-muted-foreground"
                                     >
                                         Assigned Date
                                     </Label>
                                     <p
                                         id="assigned-date"
-                                        className="text-pretty break-words font-mono"
+                                        className="text-pretty break-words font-mono text-sm"
                                         style={{
                                             wordBreak: "break-word",
                                             overflowWrap: "break-word",
@@ -303,13 +303,13 @@ export const AccountDetailsCard = ({
                                 <div>
                                     <Label
                                         htmlFor="status"
-                                        className="text-sm font-medium text-muted-foreground"
+                                        className="text-xs font-medium text-muted-foreground"
                                     >
                                         Status
                                     </Label>
                                     <p
                                         id="status"
-                                        className="text-pretty break-words font-mono"
+                                        className="text-pretty break-words font-mono text-sm"
                                         style={{
                                             wordBreak: "break-word",
                                             overflowWrap: "break-word",
@@ -330,13 +330,13 @@ export const AccountDetailsCard = ({
                                 <div>
                                     <Label
                                         htmlFor="desk"
-                                        className="text-sm font-medium text-muted-foreground"
+                                        className="text-xs font-medium text-muted-foreground"
                                     >
                                         Desk
                                     </Label>
                                     <p
                                         id="desk"
-                                        className="text-pretty break-words font-mono"
+                                        className="text-pretty break-words font-mono text-sm"
                                         style={{
                                             wordBreak: "break-word",
                                             overflowWrap: "break-word",
@@ -357,7 +357,7 @@ export const AccountDetailsCard = ({
                                 <div>
                                     <Label
                                         htmlFor="DBR_Close_Date_O"
-                                        className="text-sm font-medium text-muted-foreground"
+                                        className="text-xs font-medium text-muted-foreground"
                                     >
                                         Email
                                     </Label>

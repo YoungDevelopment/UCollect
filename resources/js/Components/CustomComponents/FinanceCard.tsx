@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import { useTheme } from "next-themes";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/Components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { ScrollArea } from "@/Components/ui/scroll-area";
 import {
     Receipt,
     CreditCard,
@@ -20,7 +20,7 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
-import { Progress } from "@/components/ui/progress";
+import { Progress } from "@/Components/ui/progress";
 import ShinyButton from "@/components/ui/shiny-button";
 import { ContactSideSheet } from "./ContactSideSheet";
 
@@ -91,88 +91,83 @@ export const FinanceCard = () => {
             </CardHeader>
             <CardContent>
                 {/* <div className="mb-4">
-          <h3 className="text-xl font-semibold mb-2">Loan Progress</h3>
-          <Progress value={calculateProgress()} className="w-full" />
-          <p className="font-mono">
-            {formatCurrency(loanInfo.assignedAmount - loanInfo.totalDue)} paid
-            of {formatCurrency(loanInfo.assignedAmount)}
-          </p>
-        </div> */}
+                    <Progress value={calculateProgress()} className="w-full" />
+                    <p className="text-xs mt-1 w-full text-right">
+                        {formatCurrency(
+                            loanInfo.assignedAmount - loanInfo.totalDue
+                        )}{" "}
+                        paid of {formatCurrency(loanInfo.assignedAmount)}
+                    </p>
+                </div> */}
 
                 <div className="grid gap-6 md:grid-cols-2">
                     <div>
-                        <h3 className="text-lg font-semibold mb-2">
-                            Debt Information
-                        </h3>
                         <dl className="grid grid-cols-2 gap-2 items-center">
                             <div className="flex items-center">
                                 <CreditCard className="mr-2 h-4 w-4 text-blue-500" />
-                                <div className="font-mono">Assigned:</div>
+                                <div className="text-sm">Assigned:</div>
                             </div>
-                            <dd className="font-medium font-semibold">
+                            <dd className="font-medium  text-sm">
                                 {formatCurrency(loanInfo.assignedAmount)}
                             </dd>
-                            <div className="flex items-center">
+                            <div className="flex items-center text-sm">
                                 <DollarSign className="mr-2 h-4 w-4 text-green-500" />
                                 <dt>Principal Due:</dt>
                             </div>
-                            <dd className="font-medium">
+                            <dd className="font-medium text-sm">
                                 {formatCurrency(loanInfo.principalDue)}
                             </dd>
-                            <div className="flex items-center">
+                            <div className="flex items-center text-sm">
                                 <DollarSign className="mr-2 h-4 w-4 text-purple-500" />
                                 <dt>Received:</dt>
                             </div>
-                            <dd className="font-medium">
+                            <dd className="font-medium text-sm">
                                 {formatCurrency(loanInfo.receivedAmount)}
                             </dd>
-                            <div className="flex items-center">
+                            <div className="flex items-center text-sm">
                                 <DollarSign className="mr-2 h-4 w-4 text-red-500" />
                                 <dt>Total Due:</dt>
                             </div>
-                            <dd className="font-medium font-semibold">
+                            <dd className=" font-semibold text-sm">
                                 {formatCurrency(loanInfo.totalDue)}
                             </dd>
                         </dl>
                     </div>
                     <div>
-                        <h3 className="text-lg font-semibold mb-2">
-                            Important Dates
-                        </h3>
                         <dl className="grid grid-cols-2 gap-2 items-center">
-                            <div className="flex items-center">
+                            <div className="flex items-center text-sm">
                                 <Calendar className="mr-2 h-4 w-4 text-orange-500" />
                                 <dt>Charge Off:</dt>
                             </div>
-                            <dd className="font-medium">
+                            <dd className="text-sm">
                                 {formatDate(loanInfo.chargeOffDate)}
                             </dd>
-                            <div className="flex items-center">
+                            <div className="flex items-center text-sm">
                                 <Calendar className="mr-2 h-4 w-4 text-yellow-500" />
                                 <dt>OOS Flag:</dt>
                             </div>
-                            <dd className="font-medium">
+                            <dd className="font-medium text-sm">
                                 {formatDate(loanInfo.oosDate)}
                             </dd>
-                            <div className="flex items-center">
+                            <div className="flex items-center text-sm">
                                 <Calendar className="mr-2 h-4 w-4 text-pink-500" />
                                 <dt>CCN Flag:</dt>
                             </div>
-                            <dd className="font-medium">
+                            <dd className="font-medium text-sm">
                                 {formatDate(loanInfo.ccnDate)}
                             </dd>
-                            <div className="flex items-center">
+                            <div className="flex items-center text-sm">
                                 <AlertCircle className="mr-2 h-4 w-4 text-gray-500" />
                                 <dt>Last Trs:</dt>
                             </div>
-                            <dd className="font-medium">
+                            <dd className="font-medium text-sm">
                                 {formatDate(loanInfo.deathDescriptionDate)}
                             </dd>
                         </dl>
                     </div>
                 </div>
 
-                <Tabs defaultValue="scheduled" className="mt-6">
+                <Tabs defaultValue="scheduled" className="mt-4">
                     <TabsList className="grid w-full grid-cols-2">
                         <TabsTrigger value="scheduled">
                             Scheduled Payments
@@ -182,7 +177,7 @@ export const FinanceCard = () => {
                         </TabsTrigger>
                     </TabsList>
                     <TabsContent value="scheduled">
-                        <ScrollArea className="h-[200px] w-full rounded-md border dark:border-slate-700">
+                        <ScrollArea className="h-[150px] w-full rounded-md border dark:border-slate-700">
                             <Table>
                                 <TableHeader>
                                     <TableRow className="dark:border-slate-700">
@@ -235,7 +230,7 @@ export const FinanceCard = () => {
                         </ShinyButton>
                     </TabsContent>
                     <TabsContent value="transactions">
-                        <ScrollArea className="h-[200px] w-full rounded-md border">
+                        <ScrollArea className=" h-[150px] w-full rounded-md border">
                             <Table>
                                 <TableHeader>
                                     <TableRow>

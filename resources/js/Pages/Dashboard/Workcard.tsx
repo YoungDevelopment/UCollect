@@ -18,7 +18,6 @@ import axios from "axios";
 import AccountSearchBar from "@/Components/CustomComponents/AccountSearchBar";
 
 import { AccountDetailsAPI, UDWMenuItemsAPI } from "@/lib/apiRoutes";
-import { DynamicMenu } from "@/Components/CustomComponents/UDWMenu";
 import { Button } from "@/components/ui/button";
 import { UDWFieldManagementModal } from "@/Components/CustomComponents/UDWFieldsMenu";
 
@@ -35,7 +34,7 @@ import { UDWFieldManagementModal } from "@/Components/CustomComponents/UDWFields
 
 */
 
-export default function Dashboard() {
+export default function WorkCard() {
     // =================================================================
     // Constants
     // =================================================================
@@ -181,7 +180,7 @@ export default function Dashboard() {
         >
             <AppSidebar />
             <SidebarInset>
-                <header className="flex p-3 shrink-0 items-center justify-between gap-2 px-4 space-x-4">
+                <header className="flex h-20 shrink-0 items-center justify-between gap-2 px-4 space-x-4">
                     <div className="flex items-center space-x-2">
                         <SidebarTrigger className="-ml-1" />
                         <WorkCardNavBar
@@ -195,7 +194,7 @@ export default function Dashboard() {
 
                 {/* Responsive Grid Layout */}
                 <div
-                    className={`background grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4 pt-0 ${
+                    className={`grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4 pt-0 ${
                         isTabletMode ? "md:grid-cols-2" : "lg:grid-cols-3"
                     }`}
                 >
@@ -204,6 +203,7 @@ export default function Dashboard() {
                             accountDetails={AccountDetailsData}
                             isLoading={AccountDetailsLoader}
                         />
+                        <CollectionNotes />
                         <ContactCard />
                     </div>
 
