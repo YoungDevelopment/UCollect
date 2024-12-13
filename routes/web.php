@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 use App\Http\Controllers\DBRController;
+use Illuminate\Http\Request;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -17,9 +18,16 @@ Route::get('/', function () {
 });
 Route::get('/dbr/top', [DBRController::class, 'getTopRecords']);
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
+Route::get('/dashboard', function (Request $request) {
+    $dbrNo = $request->input('dbr_no', '0000000006');
+    return Inertia::render('Dashboard', [
+        'initialDbrNo' => $dbrNo
+    ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/search', function () {
+    return Inertia::render('Search');
+})->middleware(['auth', 'verified'])->name('search');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

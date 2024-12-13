@@ -98,8 +98,17 @@ export default {
                     "spin-around calc(var(--speed) * 2) infinite linear",
                 rippling: "rippling var(--duration) ease-out",
                 meteor: "meteor 5s linear infinite",
+                ripple: "ripple var(--duration,2s) ease calc(var(--i, 0)*.2s) infinite",
             },
             keyframes: {
+                ripple: {
+                    "0%, 100%": {
+                        transform: "translate(-50%, -50%) scale(1)",
+                    },
+                    "50%": {
+                        transform: "translate(-50%, -50%) scale(0.9)",
+                    },
+                },
                 aurora: {
                     from: {
                         backgroundPosition: "50% 50%, 50% 50%",

@@ -144,21 +144,21 @@ export const FinanceCard = () => {
                             </dd>
                             <div className="flex items-center text-sm">
                                 <Calendar className="mr-2 h-4 w-4 text-yellow-500" />
-                                <dt>OOS Flag:</dt>
+                                <dt>Last Trs Date:</dt>
                             </div>
                             <dd className="font-medium text-sm">
                                 {formatDate(loanInfo.oosDate)}
                             </dd>
                             <div className="flex items-center text-sm">
                                 <Calendar className="mr-2 h-4 w-4 text-pink-500" />
-                                <dt>CCN Flag:</dt>
+                                <dt>Last Trs Amt:</dt>
                             </div>
                             <dd className="font-medium text-sm">
                                 {formatDate(loanInfo.ccnDate)}
                             </dd>
                             <div className="flex items-center text-sm">
                                 <AlertCircle className="mr-2 h-4 w-4 text-gray-500" />
-                                <dt>Last Trs:</dt>
+                                <dt>Last Worked:</dt>
                             </div>
                             <dd className="font-medium text-sm">
                                 {formatDate(loanInfo.deathDescriptionDate)}

@@ -182,7 +182,7 @@ export function PlaceholdersAndVanishInput({
     return (
         <form
             className={cn(
-                "w-full relative max-w-sm mx-auto border bg-card text-card-foreground  rounded-xl overflow-hidden shadow card transition duration-200",
+                "w-80 relative  max-w-sm mx-auto border bg-card text-card-foreground  rounded-xl overflow-hidden shadow card transition duration-200",
                 value && "bg-transparent"
             )}
             onSubmit={handleSubmit}

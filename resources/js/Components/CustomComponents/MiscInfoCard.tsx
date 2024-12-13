@@ -125,6 +125,40 @@ export const MiscInfoCard = ({
                             <Phone className="h-5 w-5 mt-1 flex-shrink-0" />
                             <div>
                                 <Label
+                                    htmlFor="coBorrowerPhone1"
+                                    className="text-xs font-medium text-muted-foreground"
+                                >
+                                    Debt Description
+                                </Label>
+                                <p
+                                    id="coBorrowerPhone1"
+                                    className="mt-1 text-sm"
+                                >
+                                    {coBorrowerPhone1}
+                                </p>
+                            </div>
+                        </div>
+                        <div className="flex items-start gap-2">
+                            <Phone className="h-5 w-5 mt-1 flex-shrink-0" />
+                            <div>
+                                <Label
+                                    htmlFor="coBorrowerPhone2"
+                                    className="text-xs font-medium text-muted-foreground"
+                                >
+                                    Co-Borrower Phone 2
+                                </Label>
+                                <p
+                                    id="coBorrowerPhone2"
+                                    className="mt-1 text-sm"
+                                >
+                                    {coBorrowerPhone2}
+                                </p>
+                            </div>
+                        </div>
+                        <div className="flex items-start gap-2">
+                            <Phone className="h-5 w-5 mt-1 flex-shrink-0" />
+                            <div>
+                                <Label
                                     htmlFor="coBorrowerPhone2"
                                     className="text-xs font-medium text-muted-foreground"
                                 >

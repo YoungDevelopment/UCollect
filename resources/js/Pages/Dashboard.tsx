@@ -18,9 +18,7 @@ import axios from "axios";
 import AccountSearchBar from "@/Components/CustomComponents/AccountSearchBar";
 
 import { AccountDetailsAPI, UDWMenuItemsAPI } from "@/lib/apiRoutes";
-import { DynamicMenu } from "@/Components/CustomComponents/UDWMenu";
-import { Button } from "@/components/ui/button";
-import { UDWFieldManagementModal } from "@/Components/CustomComponents/UDWFieldsMenu";
+import { usePage } from "@inertiajs/react";
 
 /*
     We will use the DBR_NO for the Search
@@ -37,56 +35,15 @@ import { UDWFieldManagementModal } from "@/Components/CustomComponents/UDWFields
 
 export default function Dashboard() {
     // =================================================================
-    // Constants
-    // =================================================================
+    const { initialDbrNo } = usePage().props;
 
-    const sampleData = {
-        menu_name: "Address Info",
-        fields: [
-            {
-                field_name: "Field 1",
-                udw_column_name: "UDW_FLD_1",
-                value: "123 Main St",
-                is_populated: true,
-            },
-            {
-                field_name: "Field 2",
-                udw_column_name: "UDW_FLD_2",
-                value: "Apt 101",
-                is_populated: true,
-            },
-            {
-                field_name: "Field 3",
-                udw_column_name: "UDW_FLD_3",
-                value: "",
-                is_populated: false,
-            },
-            {
-                field_name: "Field 4",
-                udw_column_name: "UDW_FLD_4",
-                value: "",
-                is_populated: false,
-            },
-            {
-                field_name: "Field 5",
-                udw_column_name: "UDW_FLD_5",
-                value: "New York",
-                is_populated: true,
-            },
-            {
-                field_name: "Field 6",
-                udw_column_name: "UDW_FLD_6",
-                value: "NY",
-                is_populated: true,
-            },
-        ],
-    };
+    // =================================================================
 
     // =================================================================
     // States
     // =================================================================
     const [isTabletMode, setIsTabletMode] = useState(false);
-    const [DBR_NO, setDBR_NO] = useState("0000000006");
+    const [DBR_NO, setDBR_NO] = useState(initialDbrNo || "0000000006");
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     // --------API Fetch States--------
@@ -173,6 +130,7 @@ export default function Dashboard() {
     // =================================================================
     return (
         <SidebarProvider
+            defaultOpen={false}
             style={
                 {
                     "--sidebar-width": "19rem",
@@ -195,7 +153,7 @@ export default function Dashboard() {
 
                 {/* Responsive Grid Layout */}
                 <div
-                    className={`background grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4 pt-0 ${
+                    className={`bg-background grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4 pt-0 m-0 ${
                         isTabletMode ? "md:grid-cols-2" : "lg:grid-cols-3"
                     }`}
                 >
@@ -204,13 +162,13 @@ export default function Dashboard() {
                             accountDetails={AccountDetailsData}
                             isLoading={AccountDetailsLoader}
                         />
-                        <ContactCard />
+                        <FinanceCard />
                     </div>
 
                     {/* Column B: ContactCard */}
                     <div className="space-y-6">
                         <MiscInfoCard />
-                        <FinanceCard />
+                        <ContactCard />
                     </div>
 
                     {/* Column C: Empty, goes below in tablet and mobile >*/}

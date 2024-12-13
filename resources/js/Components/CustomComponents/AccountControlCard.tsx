@@ -38,7 +38,7 @@ export const AccountControlCard = ({
 }: ContactCardProps) => {
     return (
         <Card className="w-full max-w-2xl">
-            <div className="relative  overflow-hidden rounded-lg border dark:border-slate-700 bg-background ">
+            <div className="relative  overflow-hidden rounded-lg border ">
                 <CardHeader>
                     <CardTitle className="flex justify-between items-center">
                         <div className="text-2xl font-bold flex items-center gap-2">

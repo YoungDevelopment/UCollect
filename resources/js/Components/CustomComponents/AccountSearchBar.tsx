@@ -84,11 +84,10 @@ const AccountSearchBar = ({ DBR_NO }: AccountSearchBarProps) => {
 
             if (DBR_NO_Count === 0) {
                 alert("This will handle the decline");
-                <NoAccountFound/>
-
+                <NoAccountFound />;
             } else {
                 console.log(paddedValue);
-                DBR_NO(paddedValue); 
+                DBR_NO(paddedValue);
             }
         };
 
@@ -120,7 +119,7 @@ const AccountSearchBar = ({ DBR_NO }: AccountSearchBarProps) => {
             <div className="flex items-center space-x-2">
                 <Button
                     variant="outline"
-                    className="text-lg  rounded-xl"
+                    className="rounded-xl bg-card"
                     onClick={handleButtonClick}
                 >
                     {buttonText}
