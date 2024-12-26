@@ -235,7 +235,7 @@ const data: Message[] = [
         time: "09:30",
         dow: "MON",
         uid: "N56",
-        description: "Launch Daykndvjsnvslknvlksndlv ljcnslnkclk kjbcdksjcj",
+        description: "Launch Daykndvjsnvslknv",
         cr: "A",
         dsk: "SUP",
         nextRv: "11/26",
@@ -381,7 +381,6 @@ export const NotesTable: React.FC<NotesTableProps> = ({
     return (
         <div className={`w-full ${className}`}>
             {" "}
-            {/* Use className prop here */}
             <div className="flex flex-col sm:flex-row items-center py-4 gap-4">
                 <Input
                     placeholder="Filter by description..."
@@ -425,13 +424,32 @@ export const NotesTable: React.FC<NotesTableProps> = ({
                 </DropdownMenu>
             </div>
             <div className="rounded-md border">
-                <Table className="w-full">
+                <Table>
                     <TableHeader>
                         {table.getHeaderGroups().map((headerGroup) => (
                             <TableRow key={headerGroup.id}>
                                 {headerGroup.headers.map((header) => {
+                                    const visibleColumnsCount =
+                                        headerGroup.headers.filter((h) =>
+                                            h.column.getIsVisible()
+                                        ).length;
                                     return (
-                                        <TableHead key={header.id}>
+                                        <TableHead
+                                            key={header.id}
+                                            className="whitespace-nowrap"
+                                            style={{
+                                                width: header.column.getIsVisible()
+                                                    ? `${
+                                                          100 /
+                                                          visibleColumnsCount
+                                                      }%`
+                                                    : "0",
+                                                padding:
+                                                    header.column.getIsVisible()
+                                                        ? ""
+                                                        : "0",
+                                            }}
+                                        >
                                             {header.isPlaceholder
                                                 ? null
                                                 : flexRender(
@@ -457,7 +475,13 @@ export const NotesTable: React.FC<NotesTableProps> = ({
                                     {row.getVisibleCells().map((cell) => (
                                         <TableCell
                                             key={cell.id}
-                                            className="w-full text-xs"
+                                            className="text-xs"
+                                            style={{
+                                                width: `${
+                                                    100 /
+                                                    row.getVisibleCells().length
+                                                }%`,
+                                            }}
                                         >
                                             {flexRender(
                                                 cell.column.columnDef.cell,
@@ -471,7 +495,7 @@ export const NotesTable: React.FC<NotesTableProps> = ({
                             <TableRow>
                                 <TableCell
                                     colSpan={columns.length}
-                                    className=" text-center"
+                                    className="text-center"
                                 >
                                     No results.
                                 </TableCell>

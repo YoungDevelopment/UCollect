@@ -44,7 +44,27 @@ export const MiscInfoCard = ({
             </CardHeader>
             <CardContent className="grid gap-6">
                 <div className="grid gap-2">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pl-7">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pl-3">
+                        {/* Debt Description */}
+                        <div className="flex items-start gap-2">
+                            <Phone className="h-5 w-5 mt-1 flex-shrink-0" />
+                            <div>
+                                <Label
+                                    htmlFor="coBorrowerPhone1"
+                                    className="text-xs font-medium text-muted-foreground"
+                                >
+                                    Debt Description
+                                </Label>
+                                <p
+                                    id="coBorrowerPhone1"
+                                    className="mt-1 text-sm"
+                                >
+                                    {coBorrowerPhone1}
+                                </p>
+                            </div>
+                        </div>
+
+                        {/* Current Creditor */}
                         <div className="flex items-start gap-2">
                             <Mail className="h-5 w-5 mt-1 flex-shrink-0" />
                             <div>
@@ -59,6 +79,8 @@ export const MiscInfoCard = ({
                                 </p>
                             </div>
                         </div>
+
+                        {/* Original Creditor */}
                         <div className="flex items-start gap-2">
                             <Phone className="h-5 w-5 mt-1 flex-shrink-0" />
                             <div>
@@ -73,6 +95,8 @@ export const MiscInfoCard = ({
                                 </p>
                             </div>
                         </div>
+
+                        {/* Portfolio */}
                         <div className="flex items-start gap-2">
                             <Phone className="h-5 w-5 mt-1 flex-shrink-0" />
                             <div>
@@ -87,6 +111,8 @@ export const MiscInfoCard = ({
                                 </p>
                             </div>
                         </div>
+
+                        {/* Open Date */}
                         <div className="flex items-start gap-2">
                             <Phone className="h-5 w-5 mt-1 flex-shrink-0" />
                             <div>
@@ -94,7 +120,7 @@ export const MiscInfoCard = ({
                                     htmlFor="coBorrowerPhone1"
                                     className="text-xs font-medium text-muted-foreground"
                                 >
-                                    Debt Description
+                                    Open Date
                                 </Label>
                                 <p
                                     id="coBorrowerPhone1"
@@ -104,6 +130,8 @@ export const MiscInfoCard = ({
                                 </p>
                             </div>
                         </div>
+
+                        {/* Open Credit */}
                         <div className="flex items-start gap-2">
                             <Phone className="h-5 w-5 mt-1 flex-shrink-0" />
                             <div>
@@ -111,7 +139,7 @@ export const MiscInfoCard = ({
                                     htmlFor="coBorrowerPhone2"
                                     className="text-xs font-medium text-muted-foreground"
                                 >
-                                    Co-Borrower Phone 2
+                                    Open Credit
                                 </Label>
                                 <p
                                     id="coBorrowerPhone2"
@@ -121,6 +149,64 @@ export const MiscInfoCard = ({
                                 </p>
                             </div>
                         </div>
+                        {/* OOS Date */}
+                        <div className="flex items-start gap-2">
+                            <Phone className="h-5 w-5 mt-1 flex-shrink-0" />
+                            <div>
+                                <Label
+                                    htmlFor="coBorrowerPhone2"
+                                    className="text-xs font-medium text-muted-foreground"
+                                >
+                                    OOS Date
+                                </Label>
+                                <p
+                                    id="coBorrowerPhone2"
+                                    className="mt-1 text-sm"
+                                >
+                                    {coBorrowerPhone2}
+                                </p>
+                            </div>
+                        </div>
+
+                        {/* Last Pay Date */}
+                        <div className="flex items-start gap-2">
+                            <Phone className="h-5 w-5 mt-1 flex-shrink-0" />
+                            <div>
+                                <Label
+                                    htmlFor="coBorrowerPhone2"
+                                    className="text-xs font-medium text-muted-foreground"
+                                >
+                                    Last Pay Date
+                                </Label>
+                                <p
+                                    id="coBorrowerPhone2"
+                                    className="mt-1 text-sm"
+                                >
+                                    {coBorrowerPhone2}
+                                </p>
+                            </div>
+                        </div>
+
+                        {/* Last Payment */}
+                        <div className="flex items-start gap-2">
+                            <Phone className="h-5 w-5 mt-1 flex-shrink-0" />
+                            <div>
+                                <Label
+                                    htmlFor="coBorrowerPhone2"
+                                    className="text-xs font-medium text-muted-foreground"
+                                >
+                                    Last Payment
+                                </Label>
+                                <p
+                                    id="coBorrowerPhone2"
+                                    className="mt-1 text-sm"
+                                >
+                                    {coBorrowerPhone2}
+                                </p>
+                            </div>
+                        </div>
+
+                        {/* Co-Amount */}
                         <div className="flex items-start gap-2">
                             <Phone className="h-5 w-5 mt-1 flex-shrink-0" />
                             <div>
@@ -128,7 +214,7 @@ export const MiscInfoCard = ({
                                     htmlFor="coBorrowerPhone1"
                                     className="text-xs font-medium text-muted-foreground"
                                 >
-                                    Debt Description
+                                    Co-Amount
                                 </Label>
                                 <p
                                     id="coBorrowerPhone1"
@@ -138,6 +224,8 @@ export const MiscInfoCard = ({
                                 </p>
                             </div>
                         </div>
+
+                        {/* Total Paid */}
                         <div className="flex items-start gap-2">
                             <Phone className="h-5 w-5 mt-1 flex-shrink-0" />
                             <div>
@@ -145,75 +233,7 @@ export const MiscInfoCard = ({
                                     htmlFor="coBorrowerPhone2"
                                     className="text-xs font-medium text-muted-foreground"
                                 >
-                                    Co-Borrower Phone 2
-                                </Label>
-                                <p
-                                    id="coBorrowerPhone2"
-                                    className="mt-1 text-sm"
-                                >
-                                    {coBorrowerPhone2}
-                                </p>
-                            </div>
-                        </div>
-                        <div className="flex items-start gap-2">
-                            <Phone className="h-5 w-5 mt-1 flex-shrink-0" />
-                            <div>
-                                <Label
-                                    htmlFor="coBorrowerPhone2"
-                                    className="text-xs font-medium text-muted-foreground"
-                                >
-                                    Co-Borrower Phone 2
-                                </Label>
-                                <p
-                                    id="coBorrowerPhone2"
-                                    className="mt-1 text-sm"
-                                >
-                                    {coBorrowerPhone2}
-                                </p>
-                            </div>
-                        </div>
-                        <div className="flex items-start gap-2">
-                            <Phone className="h-5 w-5 mt-1 flex-shrink-0" />
-                            <div>
-                                <Label
-                                    htmlFor="coBorrowerPhone1"
-                                    className="text-xs font-medium text-muted-foreground"
-                                >
-                                    Last Worked Date
-                                </Label>
-                                <p
-                                    id="coBorrowerPhone1"
-                                    className="mt-1 text-sm"
-                                >
-                                    {coBorrowerPhone1}
-                                </p>
-                            </div>
-                        </div>
-                        <div className="flex items-start gap-2">
-                            <Phone className="h-5 w-5 mt-1 flex-shrink-0" />
-                            <div>
-                                <Label
-                                    htmlFor="coBorrowerPhone2"
-                                    className="text-xs font-medium text-muted-foreground"
-                                >
-                                    Co-Borrower Phone 2
-                                </Label>
-                                <p
-                                    id="coBorrowerPhone2"
-                                    className="mt-1 text-sm"
-                                >
-                                    {coBorrowerPhone2}
-                                </p>
-                            </div>
-                        </div>
-                        <div className="flex items-start gap-2">
-                            <Phone className="h-5 w-5 mt-1 flex-shrink-0" />
-                            <div>
-                                <Label
-                                    htmlFor="coBorrowerPhone2"
-                                    className="text-xs font-medium text-muted-foreground"
-                                >
-                                    Co-Borrower Phone 2
+                                    Total Paid
                                 </Label>
                                 <p
                                     id="coBorrowerPhone2"

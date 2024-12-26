@@ -43,7 +43,7 @@ export default function Dashboard() {
     // States
     // =================================================================
     const [isTabletMode, setIsTabletMode] = useState(false);
-    const [DBR_NO, setDBR_NO] = useState(initialDbrNo || "0000000006");
+    const [DBR_NO, setDBR_NO] = useState(initialDbrNo || "0000000001");
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     // --------API Fetch States--------
@@ -139,7 +139,7 @@ export default function Dashboard() {
         >
             <AppSidebar />
             <SidebarInset>
-                <header className="flex p-3 shrink-0 items-center justify-between gap-2 px-4 space-x-4">
+                <header className="flex p-3 shrink-0 items-center justify-between gap-2 px-4 space-x-4 bg-background">
                     <div className="flex items-center space-x-2">
                         <SidebarTrigger className="-ml-1" />
                         <WorkCardNavBar
@@ -153,8 +153,10 @@ export default function Dashboard() {
 
                 {/* Responsive Grid Layout */}
                 <div
-                    className={`bg-background grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4 pt-0 m-0 ${
-                        isTabletMode ? "md:grid-cols-2" : "lg:grid-cols-3"
+                    className={`bg-background grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-[1fr_1fr_0.3fr] gap-6 p-4 pt-0 m-0 ${
+                        isTabletMode
+                            ? "md:grid-cols-[1fr_1fr]"
+                            : "lg:grid-cols-[1fr_1fr_0.3fr]"
                     }`}
                 >
                     <div className="space-y-6">

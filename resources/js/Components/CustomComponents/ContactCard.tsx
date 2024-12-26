@@ -44,11 +44,7 @@ export const ContactCard = ({
             </CardHeader>
             <CardContent className="grid gap-6">
                 <div className="grid gap-2">
-                    <h3 className="text-lg font-semibold flex items-center gap-2">
-                        <User className="h-5 w-5" />
-                        Contact Details
-                    </h3>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pl-7">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pl-3">
                         <div className="flex items-start gap-2">
                             <Mail className="h-5 w-5 mt-1 flex-shrink-0" />
                             <div>

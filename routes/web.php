@@ -19,7 +19,7 @@ Route::get('/', function () {
 Route::get('/dbr/top', [DBRController::class, 'getTopRecords']);
 
 Route::get('/dashboard', function (Request $request) {
-    $dbrNo = $request->input('dbr_no', '0000000006');
+    $dbrNo = $request->input('dbr_no', '0000000001');
     return Inertia::render('Dashboard', [
         'initialDbrNo' => $dbrNo
     ]);

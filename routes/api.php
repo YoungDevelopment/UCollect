@@ -17,3 +17,4 @@ Route::get('/AccountDetails/{dbrNo}', [AccountSearchController::class, 'getAccou
 Route::get('/DBR_NO_Validator/{dbrNo}', [AccountSearchController::class, 'checkDBR_NO']);
 Route::get('/getUDWMenuItems/{UDW_DBR_NO}',[AccountSearchController::class,'getUDWMenuItems']);
 Route::get('/getUDWFieldItems/{UDW_SEQ_NO}/{UDW_DBR_NO}',[AccountSearchController::class,'getUDWFieldData']);
+

@@ -264,6 +264,7 @@ class AccountSearchController extends Controller
              $borrowerName = null;
              $coBorrowerName = null;
              $SSN = null;
+             $OriginalAccountNumber = null;
 
 
                foreach ($adrRecords as $adr) {
@@ -273,13 +274,16 @@ class AccountSearchController extends Controller
                          $DOB = $adr->ADR_DOB_O;
                     } elseif ($adr->ADR_SEQ_NO == 2) {
                          $coBorrowerName = $adr->ADR_Name;
-                    } 
+                    } elseif ($adr->ADR_SEQ_NO == 'R2') {
+                         $OriginalAccountNumber = $adr->ADR_Name;
+                    }
                }
 
                 $record->Borrower_Name = $borrowerName;
                 $record->CoBorrower_Name = $coBorrowerName;
                 $record->SSN = $SSN;
                 $record->DOB = $DOB;
+                $record->OriginalAccountNumber = $OriginalAccountNumber;
                return response()->json($record);
 
 

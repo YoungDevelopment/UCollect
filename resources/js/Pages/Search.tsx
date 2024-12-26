@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Ripple from "@/Components/ui/ripple";
 import AccountSearchBar from "@/Components/CustomComponents/AccountSearchBar";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
@@ -10,9 +10,21 @@ import {
 } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/Components/app-sidebar";
 import { ModeToggle } from "@/Components/ui/theme-toggle";
+import { Clock } from "@/Components/ui/clock";
+import Particles from "@/Components/ui/particles";
+import { useTheme } from "next-themes";
+import logo from "../../assests/Logo.png";
+import { AnimatedBeamDemo } from "@/Components/ui/test";
+import BlurIn from "@/Components/ui/blur-in-text";
 
 const Search = () => {
+    const { resolvedTheme } = useTheme();
     const [DBR_NO, setDBR_NO] = useState("");
+    const [color, setColor] = useState("#ffffff");
+
+    useEffect(() => {
+        setColor(resolvedTheme === "dark" ? "#ffffff" : "#000000");
+    }, [resolvedTheme]);
 
     const GetAccountNumber = (DBR_NO: string) => {
         // Navigate directly to dashboard
@@ -33,17 +45,35 @@ const Search = () => {
         >
             <AppSidebar />
             <SidebarInset>
-                <header className="flex p-3 shrink-0 items-center justify-between gap-2 px-4 space-x-4">
-                    <div className="flex items-center space-x-2">
-                        <SidebarTrigger className="-ml-1" />
+                <div>
+                    <header className="flex p-3 shrink-0 items-center justify-between gap-2 px-4 bg-background space-x-4">
+                        <div className="flex items-center space-x-2">
+                            <SidebarTrigger className="-ml-1" />
+                        </div>
+                        <ModeToggle />
+                    </header>
+                    <div className="flex w-full justify-end items-end pr-5 text-2xl bg-background">
+                        <Clock />
                     </div>
-                    <ModeToggle />
-                </header>
+                </div>
+
                 <div className="relative flex h-full w-full flex-col items-center justify-center overflow-hidden bg-background">
-                    <div className="z-10 text-xl font-medium">
+                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 text-xl font-medium  flex flex-col items-center space-y-4">
+                        <BlurIn
+                            word="What can I help with?"
+                            className="font-heading text-pretty text-center text-[29px] font-semibold tracking-tighter sm:text-[32px] md:text-[46px] mb-5"
+                        />
                         <AccountSearchBar DBR_NO={GetAccountNumber} />
                     </div>
+
                     <Ripple />
+                    <Particles
+                        className="absolute inset-0"
+                        quantity={100}
+                        ease={90}
+                        color={color}
+                        refresh
+                    />
                 </div>
             </SidebarInset>
         </SidebarProvider>

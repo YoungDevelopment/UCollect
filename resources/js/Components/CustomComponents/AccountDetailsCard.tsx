@@ -31,6 +31,7 @@ import { useEffect, useState } from "react";
 import { format, parse } from "date-fns";
 import { Skeleton } from "../ui/skeleton";
 import { Label } from "../ui/label";
+import { Separator } from "@/components/ui/separator";
 
 type AccountDetailsCardProps = {
     accountDetails?: {
@@ -45,6 +46,7 @@ type AccountDetailsCardProps = {
         DBR_Desk: string;
         DBR_Status: string;
         SSN: string;
+        OriginalAccountNumber: string;
     };
     isLoading: boolean;
 };
@@ -65,25 +67,49 @@ export const AccountDetailsCard = ({
         ? format(
               parse(
                   accountDetails.DBR_Assign_Date_O,
-                  "yyyy-MM-dd HH:mm:ss.SSS",
+                  accountDetails.DBR_Assign_Date_O.includes(".")
+                      ? "yyyy-MM-dd HH:mm:ss.SSS"
+                      : "yyyy-MM-dd HH:mm:ss",
                   new Date()
               ),
               "MM/dd/yyyy"
           )
-        : "Invalid Date";
+        : "";
 
     const formatted_DOB = accountDetails?.DOB
         ? format(
-              parse(accountDetails.DOB, "yyyy-MM-dd", new Date()),
+              parse(
+                  accountDetails.DOB,
+                  accountDetails.DOB.includes(".")
+                      ? "yyyy-MM-dd HH:mm:ss.SSS"
+                      : "yyyy-MM-dd",
+                  new Date()
+              ),
               "MM/dd/yyyy"
           )
-        : "Invalid Date";
+        : "";
+    const formatted_Close_Date = accountDetails?.DBR_Close_Date_O
+        ? format(
+              parse(
+                  accountDetails.DBR_Close_Date_O,
+                  accountDetails.DBR_Close_Date_O.includes(".")
+                      ? "yyyy-MM-dd HH:mm:ss.SSS"
+                      : "yyyy-MM-dd",
+                  new Date()
+              ),
+              "MM/dd/yyyy"
+          )
+        : "";
 
+    const formatted_OriginalAccountNumber =
+        accountDetails?.OriginalAccountNumber
+            ? accountDetails.OriginalAccountNumber.replace(/^#/, "")
+            : "";
     // =================================================================
     // User Interface
     // =================================================================
     return (
-        <Card className="w-full max-w-3xl overflow-hidden">
+        <Card className="w-full max-w-3xl overflow-hidden  ">
             <AuroraBackground>
                 <motion.div
                     initial={{ opacity: 0.0, y: 40 }}
@@ -145,21 +171,28 @@ export const AccountDetailsCard = ({
                             </Badge>
                         </div>
                         <CardDescription className="text-lg font-bold">
-                            {isLoading ? (
-                                <Skeleton className="w-32 h-6" />
-                            ) : (
-                                accountDetails?.DBR_Cli_REF_No
-                            )}
+                            <div className="flex items-center gap-2">
+                                {isLoading ? (
+                                    <Skeleton className="w-32 h-6" />
+                                ) : (
+                                    accountDetails?.DBR_Cli_REF_No
+                                )}
+                                <Separator
+                                    orientation="vertical"
+                                    className="h-4 w-0.5"
+                                />
+                                {isLoading ? (
+                                    <Skeleton className="w-32 h-6" />
+                                ) : (
+                                    +formatted_OriginalAccountNumber
+                                )}
+                            </div>
                         </CardDescription>
-                        <div
-                            className="h-1 border-t border-transparent"
-                            style={{ borderWidth: "4px" }}
-                        />
                     </CardHeader>
 
                     <CardContent className="grid gap-4">
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                            <div className="flex items-start gap-2">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 ">
+                            <div className="flex items-start gap-2 ">
                                 <User className="h-5 w-5 mt-1 flex-shrink-0" />
                                 <div>
                                     <Label
@@ -180,7 +213,18 @@ export const AccountDetailsCard = ({
                                         {isLoading ? (
                                             <Skeleton className="w-24 h-4" />
                                         ) : (
-                                            accountDetails?.Borrower_Name
+                                            accountDetails?.Borrower_Name?.split(
+                                                ","
+                                            ).map((part, index) => (
+                                                <span key={index}>
+                                                    {part}
+                                                    {index <
+                                                        accountDetails.Borrower_Name.split(
+                                                            ","
+                                                        ).length -
+                                                            1 && <br />}
+                                                </span>
+                                            ))
                                         )}
                                     </p>
                                 </div>
@@ -319,7 +363,7 @@ export const AccountDetailsCard = ({
                                         {isLoading ? (
                                             <Skeleton className="w-24 h-4" />
                                         ) : (
-                                            accountDetails?.DBR_Status
+                                            accountDetails?.DBR_Status.toUpperCase()
                                         )}
                                     </p>
                                 </div>
@@ -346,7 +390,7 @@ export const AccountDetailsCard = ({
                                         {isLoading ? (
                                             <Skeleton className="w-24 h-4" />
                                         ) : (
-                                            accountDetails?.DBR_Desk
+                                            accountDetails?.DBR_Desk.toUpperCase()
                                         )}
                                     </p>
                                 </div>
@@ -356,21 +400,25 @@ export const AccountDetailsCard = ({
                                 <Mail className="h-4 w-4 mt-1 flex-shrink-0" />
                                 <div>
                                     <Label
-                                        htmlFor="DBR_Close_Date_O"
+                                        htmlFor="assigned-date"
                                         className="text-xs font-medium text-muted-foreground"
                                     >
-                                        Email
+                                        Close Date
                                     </Label>
                                     <p
-                                        id="DBR_Close_Date_O"
-                                        className="text-pretty break-words"
+                                        id="assigned-date"
+                                        className="text-pretty break-words font-mono text-sm"
                                         style={{
                                             wordBreak: "break-word",
                                             overflowWrap: "break-word",
                                             whiteSpace: "normal",
                                         }}
                                     >
-                                        {accountDetails?.DBR_Close_Date_O}
+                                        {isLoading ? (
+                                            <Skeleton className="w-24 h-4" />
+                                        ) : (
+                                            formatted_Close_Date
+                                        )}
                                     </p>
                                 </div>
                             </div>

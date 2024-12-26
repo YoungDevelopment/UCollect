@@ -119,12 +119,13 @@ const AccountSearchBar = ({ DBR_NO }: AccountSearchBarProps) => {
             <div className="flex items-center space-x-2">
                 <Button
                     variant="outline"
-                    className="rounded-xl bg-card"
+                    className="rounded-xl bg-primary text-white "
                     onClick={handleButtonClick}
                 >
                     {buttonText}
                 </Button>
                 <PlaceholdersAndVanishInput
+                    
                     placeholders={placeholders}
                     onChange={handleChange}
                     onSubmit={DynamicSearch}
