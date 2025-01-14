@@ -4,6 +4,9 @@ import { PlaceholdersAndVanishInput } from "../ui/placeholders-and-vanish-input"
 import axios from "axios";
 import { DBR_NOValidationAPI } from "@/lib/apiRoutes";
 import { NoAccountFound } from "./NoAccountFoundDialog";
+import { SelectableAccountsPopup } from "./SelectableList/AccountSelectablePopup";
+import { router } from "@inertiajs/react";
+import { set } from "date-fns";
 
 /**
  * Dynamic Account Search Component
@@ -34,9 +37,7 @@ import { NoAccountFound } from "./NoAccountFoundDialog";
  * - Use a toast notification for feedback on no records found.
  */
 
-type AccountSearchBarProps = {
-    DBR_NO: (DBR_NO: string) => void;
-};
+
 
 const AccountSearchBar = ({ DBR_NO }: AccountSearchBarProps) => {
     // =================================================================
@@ -45,10 +46,15 @@ const AccountSearchBar = ({ DBR_NO }: AccountSearchBarProps) => {
     const [buttonText, setButtonText] = useState("Unifin ID");
     const placeholders = ["Search Here"];
     const [loader, setloader] = useState(false);
+    const [IsPopupOpen, setIsPopupOpen] = useState(false);
 
     // =================================================================
     // Functions
     // =================================================================
+
+    const handlePopupSelection = (selectedAccountNumber: string) => {
+        DBR_NO(selectedAccountNumber);
+    };
 
     // --------API Control Functions--------
     const DBR_NO_Validator = async (DBR_NO: any) => {
@@ -98,7 +104,8 @@ const AccountSearchBar = ({ DBR_NO }: AccountSearchBarProps) => {
                     : inputValue;
             await handleDBRValidation(validValue);
         } else {
-            alert("Client ID");
+            alert("This will handle the Client Ref ID");
+            setIsPopupOpen(true);
         }
 
         setloader(false);
@@ -125,12 +132,16 @@ const AccountSearchBar = ({ DBR_NO }: AccountSearchBarProps) => {
                     {buttonText}
                 </Button>
                 <PlaceholdersAndVanishInput
-                    
                     placeholders={placeholders}
                     onChange={handleChange}
                     onSubmit={DynamicSearch}
                 />
             </div>
+            {IsPopupOpen && (
+                <SelectableAccountsPopup
+                    onAccountSelect={handlePopupSelection}
+                />
+            )}
         </div>
     );
 };

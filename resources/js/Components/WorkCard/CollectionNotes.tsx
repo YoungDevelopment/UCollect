@@ -3,7 +3,7 @@ import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Home, Mail, Phone, User, Users } from "lucide-react";
-import { ContactSideSheet } from "@/components/customComponents/ContactSideSheet";
+import { ContactSideSheet } from "@/components/workCard/ContactSideSheet";
 
 interface ContactCardProps {
   note: string;

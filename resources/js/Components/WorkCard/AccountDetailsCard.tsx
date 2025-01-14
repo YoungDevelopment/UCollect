@@ -1,6 +1,4 @@
 import {
-    CreditCard,
-    DollarSign,
     User,
     Copy,
     Users,
@@ -9,7 +7,6 @@ import {
     BookOpenCheck,
     ScanText,
     Ratio,
-    EyeClosed,
     Mail,
 } from "lucide-react";
 import { toast } from "sonner";
@@ -20,17 +17,15 @@ import {
     Card,
     CardContent,
     CardDescription,
-    CardFooter,
     CardHeader,
     CardTitle,
-} from "@/components/ui/card";
+} from "@/Components/ui/card";
 
 import { motion } from "framer-motion";
 import { AuroraBackground } from "../ui/aurora-background";
-import { useEffect, useState } from "react";
 import { format, parse } from "date-fns";
-import { Skeleton } from "../ui/skeleton";
-import { Label } from "../ui/label";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Label } from "@/Components/ui/label";
 import { Separator } from "@/components/ui/separator";
 
 type AccountDetailsCardProps = {
@@ -55,6 +50,7 @@ export const AccountDetailsCard = ({
     accountDetails,
     isLoading,
 }: AccountDetailsCardProps) => {
+    
     // =================================================================
     // States
     // =================================================================

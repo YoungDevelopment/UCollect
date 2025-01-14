@@ -2,20 +2,20 @@ import {
     SidebarInset,
     SidebarProvider,
     SidebarTrigger,
-} from "@/components/ui/sidebar";
+} from "@/Components/ui/sidebar";
 import { AppSidebar } from "@/Components/app-sidebar";
-import { AccountDetailsCard } from "@/Components/CustomComponents/AccountDetailsCard";
-import { FinanceCard } from "@/Components/CustomComponents/FinanceCard";
-import { CollectionNotes } from "@/Components/CustomComponents/CollectionNotes";
-import { ContactCard } from "@/Components/CustomComponents/ContactCard";
-import { MiscInfoCard } from "@/Components/CustomComponents/MiscInfoCard";
-import { AccountControlCard } from "@/Components/CustomComponents/AccountControlCard";
-import { NotesSection } from "@/Components/CustomComponents/NotesSection";
+import { AccountDetailsCard } from "@/Components/WorkCard/AccountDetailsCard";
+import { FinanceCard } from "@/Components/WorkCard/FinanceCard";
+import { CollectionNotes } from "@/Components/WorkCard/CollectionNotes";
+import { ContactCard } from "@/Components/WorkCard/ContactCard";
+import { MiscInfoCard } from "@/Components/WorkCard/MiscInfoCard";
+import { AccountControlCard } from "@/Components/WorkCard/AccountControlCard";
+import { NotesSection } from "@/Components/WorkCard/NotesSection";
 import { useEffect, useState } from "react";
-import { WorkCardNavBar } from "@/Components/CustomComponents/WorkCardNavBar";
+import { WorkCardNavBar } from "@/Components/WorkCard/WorkCardNavBar";
 import { Toaster } from "sonner";
 import axios from "axios";
-import AccountSearchBar from "@/Components/CustomComponents/AccountSearchBar";
+import AccountSearchBar from "@/Components/WorkCard/AccountSearchBar";
 
 import { AccountDetailsAPI, UDWMenuItemsAPI } from "@/lib/apiRoutes";
 import { usePage } from "@inertiajs/react";

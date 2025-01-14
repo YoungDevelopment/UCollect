@@ -12,8 +12,7 @@ import {
     SidebarMenuSub,
     SidebarMenuSubButton,
     SidebarMenuSubItem,
-} from "@/components/ui/sidebar";
-import { Button } from "./ui/button";
+} from "@/Components/ui/sidebar";
 import ResponsiveNavLink from "./ResponsiveNavLink";
 
 // This is sample data.

@@ -3,7 +3,7 @@ import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Home, Mail, Phone, Briefcase, User, Users } from "lucide-react";
-import { ContactSideSheet } from "@/components/customComponents/ContactSideSheet";
+import { ContactSideSheet } from "@/components/workCard/ContactSideSheet";
 
 interface ContactCardProps {
     address: string;
@@ -18,7 +18,7 @@ interface ContactCardProps {
     employerName: string;
     employerPhone: string;
 }
-export const ContactCard = ({
+export const MiscInfoCard = ({
     address = "123 Main St Main Road Flags",
     city = "Anytown",
     state = "ST",
@@ -37,7 +37,7 @@ export const ContactCard = ({
                 <CardTitle className="flex justify-between items-center">
                     <div className="text-2xl font-bold flex items-center gap-2">
                         <Users className="h-6 w-6" />
-                        Contact Information
+                        Misc Information
                     </div>
                     <ContactSideSheet />
                 </CardTitle>
@@ -45,56 +45,7 @@ export const ContactCard = ({
             <CardContent className="grid gap-6">
                 <div className="grid gap-2">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pl-3">
-                        <div className="flex items-start gap-2">
-                            <Mail className="h-5 w-5 mt-1 flex-shrink-0" />
-                            <div>
-                                <Label
-                                    htmlFor="email"
-                                    className="text-xs font-medium text-muted-foreground"
-                                >
-                                    Email
-                                </Label>
-                                <p
-                                    id="email"
-                                    className="text-pretty break-words text-sm"
-                                    style={{
-                                        wordBreak: "break-word",
-                                        overflowWrap: "break-word",
-                                        whiteSpace: "normal",
-                                    }}
-                                >
-                                    {email}
-                                </p>
-                            </div>
-                        </div>
-                        <div className="flex items-start gap-2">
-                            <Phone className="h-5 w-5 mt-1 flex-shrink-0" />
-                            <div>
-                                <Label
-                                    htmlFor="borrowerPhone1"
-                                    className="text-xs font-medium text-muted-foreground"
-                                >
-                                    Borrower Phone 1
-                                </Label>
-                                <p id="borrowerPhone1" className="mt-1 text-sm">
-                                    {borrowerPhone1}
-                                </p>
-                            </div>
-                        </div>
-                        <div className="flex items-start gap-2">
-                            <Phone className="h-5 w-5 mt-1 flex-shrink-0" />
-                            <div>
-                                <Label
-                                    htmlFor="borrowerPhone2"
-                                    className="text-xs font-medium text-muted-foreground"
-                                >
-                                    Borrower Phone 2
-                                </Label>
-                                <p id="borrowerPhone2" className="mt-1 text-sm">
-                                    {borrowerPhone2}
-                                </p>
-                            </div>
-                        </div>
+                        {/* Debt Description */}
                         <div className="flex items-start gap-2">
                             <Phone className="h-5 w-5 mt-1 flex-shrink-0" />
                             <div>
@@ -102,7 +53,7 @@ export const ContactCard = ({
                                     htmlFor="coBorrowerPhone1"
                                     className="text-xs font-medium text-muted-foreground"
                                 >
-                                    Co-Borrower Phone 1
+                                    Debt Description
                                 </Label>
                                 <p
                                     id="coBorrowerPhone1"
@@ -112,6 +63,75 @@ export const ContactCard = ({
                                 </p>
                             </div>
                         </div>
+
+                        {/* Current Creditor */}
+                        <div className="flex items-start gap-2">
+                            <Mail className="h-5 w-5 mt-1 flex-shrink-0" />
+                            <div>
+                                <Label
+                                    htmlFor="email"
+                                    className="text-xs font-medium text-muted-foreground"
+                                >
+                                    Current Creditor
+                                </Label>
+                                <p id="email" className="mt-1 text-sm">
+                                    {email}
+                                </p>
+                            </div>
+                        </div>
+
+                        {/* Original Creditor */}
+                        <div className="flex items-start gap-2">
+                            <Phone className="h-5 w-5 mt-1 flex-shrink-0" />
+                            <div>
+                                <Label
+                                    htmlFor="borrowerPhone1"
+                                    className="text-xs font-medium text-muted-foreground"
+                                >
+                                    Original Creditor
+                                </Label>
+                                <p id="borrowerPhone1" className="mt-1 text-sm">
+                                    {borrowerPhone1}
+                                </p>
+                            </div>
+                        </div>
+
+                        {/* Portfolio */}
+                        <div className="flex items-start gap-2">
+                            <Phone className="h-5 w-5 mt-1 flex-shrink-0" />
+                            <div>
+                                <Label
+                                    htmlFor="borrowerPhone2"
+                                    className="text-xs font-medium text-muted-foreground"
+                                >
+                                    Portfolio
+                                </Label>
+                                <p id="borrowerPhone2" className="mt-1 text-sm">
+                                    {borrowerPhone2}
+                                </p>
+                            </div>
+                        </div>
+
+                        {/* Open Date */}
+                        <div className="flex items-start gap-2">
+                            <Phone className="h-5 w-5 mt-1 flex-shrink-0" />
+                            <div>
+                                <Label
+                                    htmlFor="coBorrowerPhone1"
+                                    className="text-xs font-medium text-muted-foreground"
+                                >
+                                    Open Date
+                                </Label>
+                                <p
+                                    id="coBorrowerPhone1"
+                                    className="mt-1 text-sm"
+                                >
+                                    {coBorrowerPhone1}
+                                </p>
+                            </div>
+                        </div>
+
+                        {/* Open Credit */}
                         <div className="flex items-start gap-2">
                             <Phone className="h-5 w-5 mt-1 flex-shrink-0" />
                             <div>
@@ -119,7 +139,7 @@ export const ContactCard = ({
                                     htmlFor="coBorrowerPhone2"
                                     className="text-xs font-medium text-muted-foreground"
                                 >
-                                    Co-Borrower Phone 2
+                                    Open Credit
                                 </Label>
                                 <p
                                     id="coBorrowerPhone2"
@@ -129,6 +149,7 @@ export const ContactCard = ({
                                 </p>
                             </div>
                         </div>
+                        {/* OOS Date */}
                         <div className="flex items-start gap-2">
                             <Phone className="h-5 w-5 mt-1 flex-shrink-0" />
                             <div>
@@ -136,7 +157,7 @@ export const ContactCard = ({
                                     htmlFor="coBorrowerPhone2"
                                     className="text-xs font-medium text-muted-foreground"
                                 >
-                                    Co-Borrower Phone 2
+                                    OOS Date
                                 </Label>
                                 <p
                                     id="coBorrowerPhone2"
@@ -146,57 +167,81 @@ export const ContactCard = ({
                                 </p>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div className="grid gap-2">
-                    <h3 className="text-lg font-semibold flex items-center gap-2">
-                        <Home className="h-5 w-5" />
-                        Address
-                    </h3>
-                    <div className="grid grid-cols-4 gap-4 pl-7">
-                        <div>
-                            <Label
-                                htmlFor="address"
-                                className="text-xs font-medium text-muted-foreground"
-                            >
-                                Street
-                            </Label>
-                            <p id="address" className="mt-1 text-sm">
-                                {address}
-                            </p>
+
+                        {/* Last Pay Date */}
+                        <div className="flex items-start gap-2">
+                            <Phone className="h-5 w-5 mt-1 flex-shrink-0" />
+                            <div>
+                                <Label
+                                    htmlFor="coBorrowerPhone2"
+                                    className="text-xs font-medium text-muted-foreground"
+                                >
+                                    Last Pay Date
+                                </Label>
+                                <p
+                                    id="coBorrowerPhone2"
+                                    className="mt-1 text-sm"
+                                >
+                                    {coBorrowerPhone2}
+                                </p>
+                            </div>
                         </div>
-                        <div>
-                            <Label
-                                htmlFor="city"
-                                className="text-xs font-medium text-muted-foreground"
-                            >
-                                City
-                            </Label>
-                            <p id="city" className="mt-1 text-sm">
-                                {city}
-                            </p>
+
+                        {/* Last Payment */}
+                        <div className="flex items-start gap-2">
+                            <Phone className="h-5 w-5 mt-1 flex-shrink-0" />
+                            <div>
+                                <Label
+                                    htmlFor="coBorrowerPhone2"
+                                    className="text-xs font-medium text-muted-foreground"
+                                >
+                                    Last Payment
+                                </Label>
+                                <p
+                                    id="coBorrowerPhone2"
+                                    className="mt-1 text-sm"
+                                >
+                                    {coBorrowerPhone2}
+                                </p>
+                            </div>
                         </div>
-                        <div>
-                            <Label
-                                htmlFor="state"
-                                className="text-xs font-medium text-muted-foreground"
-                            >
-                                State
-                            </Label>
-                            <p id="state" className="mt-1 text-sm">
-                                {state}
-                            </p>
+
+                        {/* Co-Amount */}
+                        <div className="flex items-start gap-2">
+                            <Phone className="h-5 w-5 mt-1 flex-shrink-0" />
+                            <div>
+                                <Label
+                                    htmlFor="coBorrowerPhone1"
+                                    className="text-xs font-medium text-muted-foreground"
+                                >
+                                    Co-Amount
+                                </Label>
+                                <p
+                                    id="coBorrowerPhone1"
+                                    className="mt-1 text-sm"
+                                >
+                                    {coBorrowerPhone1}
+                                </p>
+                            </div>
                         </div>
-                        <div>
-                            <Label
-                                htmlFor="zip"
-                                className="text-xs font-medium text-muted-foreground"
-                            >
-                                ZIP
-                            </Label>
-                            <p id="zip" className="mt-1 text-sm">
-                                {zip}
-                            </p>
+
+                        {/* Total Paid */}
+                        <div className="flex items-start gap-2">
+                            <Phone className="h-5 w-5 mt-1 flex-shrink-0" />
+                            <div>
+                                <Label
+                                    htmlFor="coBorrowerPhone2"
+                                    className="text-xs font-medium text-muted-foreground"
+                                >
+                                    Total Paid
+                                </Label>
+                                <p
+                                    id="coBorrowerPhone2"
+                                    className="mt-1 text-sm"
+                                >
+                                    {coBorrowerPhone2}
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -3,7 +3,7 @@ import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-w
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Home, Mail, Phone, Briefcase, User, Users } from "lucide-react";
-import { ContactSideSheet } from "@/components/customComponents/ContactSideSheet";
+import { ContactSideSheet } from "@/components/workCard/ContactSideSheet";
 import { Button } from "../ui/button";
 import Particles from "../ui/particles";
 import { useTheme } from "next-themes";

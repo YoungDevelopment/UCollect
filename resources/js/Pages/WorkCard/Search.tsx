@@ -1,25 +1,22 @@
 import React, { useEffect, useState } from "react";
 import Ripple from "@/Components/ui/ripple";
-import AccountSearchBar from "@/Components/CustomComponents/AccountSearchBar";
-import { Card, CardContent, CardTitle } from "@/components/ui/card";
+import AccountSearchBar from "@/Components/WorkCard/AccountSearchBar";
 import { router } from "@inertiajs/react";
 import {
     SidebarInset,
     SidebarProvider,
     SidebarTrigger,
-} from "@/components/ui/sidebar";
+} from "@/Components/ui/sidebar";
 import { AppSidebar } from "@/Components/app-sidebar";
 import { ModeToggle } from "@/Components/ui/theme-toggle";
 import { Clock } from "@/Components/ui/clock";
 import Particles from "@/Components/ui/particles";
 import { useTheme } from "next-themes";
-import logo from "../../assests/Logo.png";
-import { AnimatedBeamDemo } from "@/Components/ui/test";
 import BlurIn from "@/Components/ui/blur-in-text";
+import { SelectableAccountsPopup } from "@/Components/WorkCard/SelectableList/AccountSelectablePopup";
 
 const Search = () => {
     const { resolvedTheme } = useTheme();
-    const [DBR_NO, setDBR_NO] = useState("");
     const [color, setColor] = useState("#ffffff");
 
     useEffect(() => {

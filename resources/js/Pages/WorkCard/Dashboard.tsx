@@ -2,24 +2,23 @@ import {
     SidebarInset,
     SidebarProvider,
     SidebarTrigger,
-} from "@/components/ui/sidebar";
+} from "@/Components/ui/sidebar";
 import { AppSidebar } from "@/Components/app-sidebar";
-import { AccountDetailsCard } from "@/Components/CustomComponents/AccountDetailsCard";
-import { FinanceCard } from "@/Components/CustomComponents/FinanceCard";
-import { CollectionNotes } from "@/Components/CustomComponents/CollectionNotes";
-import { ContactCard } from "@/Components/CustomComponents/ContactCard";
-import { MiscInfoCard } from "@/Components/CustomComponents/MiscInfoCard";
-import { AccountControlCard } from "@/Components/CustomComponents/AccountControlCard";
-import { NotesSection } from "@/Components/CustomComponents/NotesSection";
+import { AccountDetailsCard } from "@/Components/WorkCard/AccountDetailsCard";
+import { FinanceCard } from "@/Components/WorkCard/FinanceCard";
+import { CollectionNotes } from "@/Components/WorkCard/CollectionNotes";
+import { ContactCard } from "@/Components/WorkCard/ContactCard";
+import { MiscInfoCard } from "@/Components/WorkCard/MiscInfoCard";
+import { AccountControlCard } from "@/Components/WorkCard/AccountControlCard";
+import { NotesSection } from "@/Components/WorkCard/NotesSection";
 import { useEffect, useState } from "react";
-import { WorkCardNavBar } from "@/Components/CustomComponents/WorkCardNavBar";
+import { WorkCardNavBar } from "@/Components/WorkCard/WorkCardNavBar";
 import { Toaster } from "sonner";
 import axios from "axios";
-import AccountSearchBar from "@/Components/CustomComponents/AccountSearchBar";
+import AccountSearchBar from "@/Components/WorkCard/AccountSearchBar";
 
 import { AccountDetailsAPI, UDWMenuItemsAPI } from "@/lib/apiRoutes";
-import { Button } from "@/components/ui/button";
-import { UDWFieldManagementModal } from "@/Components/CustomComponents/UDWFieldsMenu";
+import { usePage } from "@inertiajs/react";
 
 /*
     We will use the DBR_NO for the Search
@@ -34,58 +33,17 @@ import { UDWFieldManagementModal } from "@/Components/CustomComponents/UDWFields
 
 */
 
-export default function WorkCard() {
+export default function Dashboard() {
     // =================================================================
-    // Constants
-    // =================================================================
+    const { initialDbrNo } = usePage().props;
 
-    const sampleData = {
-        menu_name: "Address Info",
-        fields: [
-            {
-                field_name: "Field 1",
-                udw_column_name: "UDW_FLD_1",
-                value: "123 Main St",
-                is_populated: true,
-            },
-            {
-                field_name: "Field 2",
-                udw_column_name: "UDW_FLD_2",
-                value: "Apt 101",
-                is_populated: true,
-            },
-            {
-                field_name: "Field 3",
-                udw_column_name: "UDW_FLD_3",
-                value: "",
-                is_populated: false,
-            },
-            {
-                field_name: "Field 4",
-                udw_column_name: "UDW_FLD_4",
-                value: "",
-                is_populated: false,
-            },
-            {
-                field_name: "Field 5",
-                udw_column_name: "UDW_FLD_5",
-                value: "New York",
-                is_populated: true,
-            },
-            {
-                field_name: "Field 6",
-                udw_column_name: "UDW_FLD_6",
-                value: "NY",
-                is_populated: true,
-            },
-        ],
-    };
+    // =================================================================
 
     // =================================================================
     // States
     // =================================================================
     const [isTabletMode, setIsTabletMode] = useState(false);
-    const [DBR_NO, setDBR_NO] = useState("0000000006");
+    const [DBR_NO, setDBR_NO] = useState(initialDbrNo || "0000000001");
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     // --------API Fetch States--------
@@ -137,6 +95,9 @@ export default function WorkCard() {
             console.error(error);
         }
     };
+
+
+
     // =================================================================
     // Hooks
     // =================================================================
@@ -172,6 +133,7 @@ export default function WorkCard() {
     // =================================================================
     return (
         <SidebarProvider
+            defaultOpen={false}
             style={
                 {
                     "--sidebar-width": "19rem",
@@ -180,7 +142,7 @@ export default function WorkCard() {
         >
             <AppSidebar />
             <SidebarInset>
-                <header className="flex h-20 shrink-0 items-center justify-between gap-2 px-4 space-x-4">
+                <header className="flex p-3 shrink-0 items-center justify-between gap-2 px-4 space-x-4 bg-background">
                     <div className="flex items-center space-x-2">
                         <SidebarTrigger className="-ml-1" />
                         <WorkCardNavBar
@@ -194,8 +156,10 @@ export default function WorkCard() {
 
                 {/* Responsive Grid Layout */}
                 <div
-                    className={`grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4 pt-0 ${
-                        isTabletMode ? "md:grid-cols-2" : "lg:grid-cols-3"
+                    className={`bg-background grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-[1fr_1fr_0.3fr] gap-6 p-4 pt-0 m-0 ${
+                        isTabletMode
+                            ? "md:grid-cols-[1fr_1fr]"
+                            : "lg:grid-cols-[1fr_1fr_0.3fr]"
                     }`}
                 >
                     <div className="space-y-6">
@@ -203,17 +167,15 @@ export default function WorkCard() {
                             accountDetails={AccountDetailsData}
                             isLoading={AccountDetailsLoader}
                         />
-                        <CollectionNotes />
-                        <ContactCard />
+                        <FinanceCard />
                     </div>
 
                     {/* Column B: ContactCard */}
                     <div className="space-y-6">
                         <MiscInfoCard />
-                        <FinanceCard />
+                        <ContactCard />
                     </div>
 
-                    {/* Column C: Empty, goes below in tablet and mobile >*/}
                     <div className="space-y-6">
                         <AccountControlCard />
                         <NotesSection />
